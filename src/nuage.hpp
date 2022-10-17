@@ -1,31 +1,48 @@
-#pragma once
 #include "cartesien.hpp"
 #include "point.hpp"
 #include "polaire.hpp"
 #include <iterator>
 #include <vector>
 
-using std::vector;
+template <class T>
 
-class Nuage {
-	vector<Point *> points;
+class Nuage
+{
+	std::vector<T> vect;
 
-  public:
+public:
+	using const_iterator = typename std::vector<T>::const_iterator;
+
 	Nuage();
 	size_t size() const;
-	void ajouter(Point &p);
-	std::vector<Point *>::const_iterator begin(void) const;
-	std::vector<Point *>::const_iterator end(void) const;
-	using const_iterator = std::vector<Point *>::const_iterator;
-	Point &operator[](uint const index);
+	void ajouter(T const &p);
+	const_iterator begin() const;
+	const_iterator end() const;
 };
 
-struct BarycentreCartesien {
-	Cartesien operator()(Nuage const &nuage) const;
-};
+template <class T>
+Nuage<T>::Nuage() {}
 
-struct BarycentrePolaire {
-	Polaire operator()(Nuage const &nuage) const;
-};
+template <class T>
+size_t Nuage<T>::size() const
+{
+	return vect.size();
+}
 
-Cartesien barycentre(Nuage const &nuage);
+template <class T>
+void Nuage<T>::ajouter(T const &p)
+{
+	vect.push_back(p);
+}
+
+template <typename T>
+typename Nuage<T>::const_iterator Nuage<T>::begin() const
+{
+	return vect.begin();
+}
+
+template <typename T>
+typename Nuage<T>::const_iterator Nuage<T>::end() const
+{
+	return vect.end();
+}
