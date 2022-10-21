@@ -51,14 +51,13 @@ template <typename T>
 
 Polaire barycentre_v1(Nuage<T> const &n)
 {
-	double x = 0;
-	double y = 0;
-	for (T p : n)
+	double angle = 0;
+	double distance = 0;
+	for (Polaire p : n)
 	{
-		Cartesien c;
-		p.convertir(c);
-		x += c.getX();
-		y += c.getY();
+
+		angle += p.getAngle();
+		distance += p.getDistance();
 	}
-	return (n.size() == 0) ? Polaire(0, 0) : Polaire((atan2(y / n.size(), x / n.size()) * 180 / M_PI), sqrt(x / n.size() * x / n.size() + y / n.size() * y / n.size()));
+	return (n.size() == 0) ? Polaire(0, 0) : Polaire(angle / n.size(), distance / n.size());
 }
