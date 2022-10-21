@@ -46,3 +46,17 @@ typename Nuage<T>::const_iterator Nuage<T>::end() const
 {
 	return vect.end();
 }
+
+template <typename T>
+Cartesien barycentre_v1(Nuage<T> const &n)
+{
+	double x, y;
+	for (T p : n)
+	{
+		Cartesien c;
+		p.convertir(c);
+		x += c.getX();
+		y += c.getY();
+	}
+	return (n.size() == 0) ? Cartesien(0, 0) : Cartesien(x / n.size(), y / n.size());
+}
