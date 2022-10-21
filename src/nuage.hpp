@@ -46,3 +46,19 @@ typename Nuage<T>::const_iterator Nuage<T>::end() const
 {
 	return vect.end();
 }
+
+template <typename T>
+
+Polaire barycentre_v1(Nuage<T> const &n)
+{
+	double x = 0;
+	double y = 0;
+	for (T p : n)
+	{
+		Cartesien c;
+		p.convertir(c);
+		x += c.getX();
+		y += c.getY();
+	}
+	return (n.size() == 0) ? Polaire(0, 0) : Polaire((atan2(y / n.size(), x / n.size()) * 180 / M_PI), sqrt(x / n.size() * x / n.size() + y / n.size() * y / n.size()));
+}
