@@ -152,35 +152,37 @@ TEST_CASE("TP2_Nuage::BarycentrePolaire_V1")
 }
 */
 //------------------------------------------------------------------------------------------------ 5
-/*TEST_CASE ( "TP2_Nuage::BarycentreCartesien_V2" ) {
- Nuage<Cartesien> n;
 
- Cartesien p1(12,34);
- Cartesien p2(56,78);
- Cartesien p3(90,12);
- Cartesien p4(34,56);
+TEST_CASE("TP2_Nuage::BarycentreCartesien_V2")
+{
+    Nuage<Cartesien> n;
 
- Cartesien b1 = barycentre_v2(n);
+    Cartesien p1(12, 34);
+    Cartesien p2(56, 78);
+    Cartesien p3(90, 12);
+    Cartesien p4(34, 56);
 
- REQUIRE ( b1.getX() == Approx(0.0) );
- REQUIRE ( b1.getY() == Approx(0.0) );
+    Cartesien b1 = barycentre_v2(n);
 
- n.ajouter(p1);
+    REQUIRE(b1.getX() == Approx(0.0));
+    REQUIRE(b1.getY() == Approx(0.0));
 
- Cartesien b2 = barycentre_v2(n);
+    n.ajouter(p1);
 
- REQUIRE ( b2.getX() == Approx(p1.getX()) );
- REQUIRE ( b2.getY() == Approx(p1.getY()) );
+    Cartesien b2 = barycentre_v2(n);
 
- n.ajouter(p2);
- n.ajouter(p3);
- n.ajouter(p4);
+    REQUIRE(b2.getX() == Approx(p1.getX()));
+    REQUIRE(b2.getY() == Approx(p1.getY()));
 
- Cartesien b3 = barycentre_v2(n);
+    n.ajouter(p2);
+    n.ajouter(p3);
+    n.ajouter(p4);
 
- REQUIRE ( b3.getX() == Approx((p1.getX()+p2.getX()+p3.getX()+p4.getX())/4) );
- REQUIRE ( b3.getY() == Approx((p1.getY()+p2.getY()+p3.getY()+p4.getY())/4) );
-}*/
+    Cartesien b3 = barycentre_v2(n);
+
+    REQUIRE(b3.getX() == Approx((p1.getX() + p2.getX() + p3.getX() + p4.getX()) / 4));
+    REQUIRE(b3.getY() == Approx((p1.getY() + p2.getY() + p3.getY() + p4.getY()) / 4));
+}
 
 //------------------------------------------------------------------------------------------------ 6
 /*TEST_CASE ( "TP2_Nuage::BarycentreCartesienVecteur" ) {
